@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         const respuesta = await paisesAmerica();
         res.status(200).json(respuesta);
     } catch (error) {
-        console.error('detalle de errores:', error.message);
+        console.error('detalle de errores (router):', error.message);
         res.status(500).json({ message: 'Error al consumir la API' });
     }
 });
