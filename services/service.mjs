@@ -18,7 +18,7 @@ const paisesAmerica = async () => {
                 poblacion: pais.population,
                 bandera: pais.flags,
                 zonaHoraria: pais.timezones,
-                limitrofes: pais.borders,
+                limites: pais.borders,
                 area: pais.area, 
                 region: pais.subregion,
                 continente: pais.continents,
