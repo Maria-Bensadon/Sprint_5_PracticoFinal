@@ -12,7 +12,7 @@ server.use(express.json());
 server.get('/', (req, res) => { res.send('si anda'); }); // solicitud HTTP
 conexionMongoDB(); // funcion que conecta con la DB
 
-server.use('/paises', router);
+server.use('/', router);
 
 // servidor corriendo
 server.listen(port, () => console.log(`servidor corriendo en http://localhost:${port}`));
