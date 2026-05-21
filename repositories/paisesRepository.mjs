@@ -1,40 +1,31 @@
 
 import IRepository from "./IRepository.mjs";
-import paisesAmerica from "../services/service.mjs"
+import paisesAmerica from "../services/service.mjs"; 
+import paises from "../models/modelo.mjs";
 
 
 class paisesRepository extends IRepository {
 
     // Metodo GET 
-    async obtenerTodos(datos) {
- 
-        // no andaba porque faltaba el await
-        const paises = await paisesAmerica(); 
-        const filtradoSPA = paises.filter(pais => { return pais.languages.spa });
+    async obtenerTodos() {
 
-        const paisesEspañol = filtradoSPA.map(pais => {
-            return {
+        try {
+            return await paises.find();
 
-                nombreComun: pais.name.common,
-                nombreOficial: pais.name.official,
-                capital: pais.capital,
-                poblacion: pais.population,
-                bandera: pais.flags,
-                zonaHoraria: pais.timezones,
-                limites: pais.borders,
-                area: pais.area,
-                region: pais.subregion,
-                continente: pais.continents,
-                creador: "Gaby Bensadon"
-
-            }
-
-        });
-
-        return await paisesEspañol;
+        } catch (error) {
+            console.log('Error Mongo: ', error.message);
+        }
     }
 
 
-}
+    async importarEnMongoR(datos) {
 
+        try {
+            return await paises.insertMany(datos);
+
+        } catch (error) {
+            console.error('detalle de errores importarEnMongoR (repositorio):', error.message);
+        }
+    }
+}
 export default new paisesRepository;

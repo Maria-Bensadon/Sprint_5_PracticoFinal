@@ -1,7 +1,5 @@
 
 import axios from 'axios';
-import paises from '../models/modelo.mjs';
-import IRepository from '../repositories/IRepository.mjs';
 import paisesRepository from '../repositories/paisesRepository.mjs';
 
 
@@ -9,7 +7,7 @@ const paisesAmerica = async () => {
 
     try {
         const paises = await axios.get('https://restcountries.com/v3.1/region/america');
-        return paises.data; 
+        return paises.data;
 
     } catch (error) {
         console.error('Error al consumir la API:', error);
@@ -20,9 +18,49 @@ const paisesAmerica = async () => {
 export default paisesAmerica;
 
 
-export async function filtrarPaisesEspañol(datos) {
-    return paisesRepository.obtenerTodos();
+export async function filtrarPaisesEspañol() {
+
+    try {
+        const paises = await paisesAmerica();
+        const paisesEspañol = paises
+            .filter(pais => { return pais.languages.spa })
+            .map(pais => {
+                return {
+                    nombreComun: pais.name.common,
+                    nombreOficial: pais.name.official,
+                    capital: pais.capital,
+                    poblacion: pais.population,
+                    bandera: pais.flags,
+                    zonaHoraria: pais.timezones,
+                    limites: pais.borders,
+                    area: pais.area,
+                    region: pais.subregion,
+                    continente: pais.continents,
+                    creador: "Gaby Bensadon"
+                }
+            });
+        return paisesEspañol;
+    }
+
+    catch (error) {
+        console.log(`Error al filtrar países: `, error.message);
+    }
 }
+
+export async function importarEnMongoS(datos) {
+
+    try {
+        const datos = await filtrarPaisesEspañol(); 
+        return await paisesRepository.importarEnMongoR(datos);  
+
+    } catch (error) {
+        console.error('detalle de errores importarEnMongoS (servicio):', error.message);
+    }
+
+
+
+};
+
 
 
 
@@ -35,24 +73,24 @@ export async function filtrarPaisesEspañol(datos) {
 
 //         const paisesFiltrados = paises.data.filter(pais => { return pais.languages.spa });
 
-        // const paisesLimpieza = paisesFiltrados.map(pais => {
-        //     return {
+// const paisesLimpieza = paisesFiltrados.map(pais => {
+//     return {
 
-        //         nombreComun: pais.name.common,
-        //         nombreOficial: pais.name.official,
-        //         capital: pais.capital,
-        //         poblacion: pais.population,
-        //         bandera: pais.flags,
-        //         zonaHoraria: pais.timezones,
-        //         limites: pais.borders,
-        //         area: pais.area,
-        //         region: pais.subregion,
-        //         continente: pais.continents,
-        //         creador: "Gaby Bensadon"
+//         nombreComun: pais.name.common,
+//         nombreOficial: pais.name.official,
+//         capital: pais.capital,
+//         poblacion: pais.population,
+//         bandera: pais.flags,
+//         zonaHoraria: pais.timezones,
+//         limites: pais.borders,
+//         area: pais.area,
+//         region: pais.subregion,
+//         continente: pais.continents,
+//         creador: "Gaby Bensadon"
 
-        //     }
+//     }
 
-        // });
+// });
 
 //         console.log(paisesLimpieza);
 //         return paisesLimpieza;
@@ -63,3 +101,10 @@ export async function filtrarPaisesEspañol(datos) {
 // }
 
 // export default paisesAmerica; 
+
+/**
+ 
+
+
+
+ */

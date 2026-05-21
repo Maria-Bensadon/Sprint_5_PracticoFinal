@@ -1,8 +1,7 @@
 
 
 import express from 'express';
-import axios from 'axios';
-import { obtenerPaisesEspañolController } from '../controller/controller.mjs';
+import { obtenerPaisesEspañolController, guardarDatosMongoDB } from '../controller/controller.mjs';
 
 const router = express.Router();
 
@@ -21,4 +20,7 @@ const router = express.Router();
 export default router;
 
 router.get('/todos', obtenerPaisesEspañolController);
+
+router.post('/guardarTodos', guardarDatosMongoDB); 
+
 

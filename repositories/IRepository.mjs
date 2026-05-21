@@ -4,11 +4,11 @@ class IRepository {
         throw new Error(`Método 'obtenerTodos()' no implementado`);
     }
 
-    guardarEnMongoDB(datos) {
-        throw new Error(`Método 'guardarEnMongoDB()' no implementado`);
+    importarEnMongoR(datos) {
+        throw new Error(`Método 'importarEnMongoDB()' no implementado`);
     }
 
-    borrarDeMongoDB(datos) {
+    borrarDeMongoDB() {
         throw new Error(`Método 'borrarDeMongoDB()' no implementado`);
     }
 
