@@ -9,8 +9,8 @@ const port = 3000; // puerto
 server.use(express.json());
 
 // http://localhost:3000
-server.get('/', (req, res) => { res.send('si anda'); }); // solicitud HTTP
-conexionMongoDB(); // funcion que conecta con la DB
+server.get('/', (req, res) => { res.send('si anda'); });
+conexionMongoDB(); 
 
 server.use('/', router);
 

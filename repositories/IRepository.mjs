@@ -12,7 +12,6 @@ class IRepository {
         throw new Error(`Método 'borrarDeMongoDB()' no implementado`);
     }
 
-
     crearPais() {
         throw new Error(`Método 'crearPais()' no implementado`);
     }

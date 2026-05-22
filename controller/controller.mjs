@@ -1,5 +1,6 @@
 
-import { filtrarPaisesEspañol, importarEnMongoS, eliminarEnMongoS } from "../services/service.mjs";
+import { error } from "node:console";
+import { filtrarPaisesEspañol, importarEnMongoS, eliminarEnMongoS, crearPaisS } from "../services/service.mjs";
 
 
 export async function obtenerPaisesEspañolController(req, res) {
@@ -20,7 +21,7 @@ export async function obtenerPaisesEspañolController(req, res) {
 
     }
 
-}; 
+};
 
 
 export async function guardarDatosController(req, res) {
@@ -41,7 +42,7 @@ export async function guardarDatosController(req, res) {
         });
         console.error('detalle de errores guardarDatosController:', error.message);
     }
-}; 
+};
 
 
 export async function borrarDatosController(req, res) {
@@ -60,6 +61,28 @@ export async function borrarDatosController(req, res) {
         });
         console.error('detalle de errores borrarDatosController:', error.message);
     }
-}; 
+};
 
+
+export async function crearPaisController(req, res) {
+
+    try {
+        const datos = req.body;
+
+        const nuevoPais = await crearPaisS(datos);
+        res.status(200).json({
+            mensaje: 'Nuevo país creado: ',
+            datos: nuevoPais
+        });
+        
+        if (!nuevoPais) { res.status(400).send({ mensaje: "No se pudo crear un nuevo pais (error 400)", error: error.message }); }
+
+    } catch (error) {
+        res.status(500).send({
+            mensaje: "Error al crear un nuevo pais (controlador)",
+            error: error.message
+        });
+        console.error('detalle de errores crearPaisController:', error.message);
+    }
+};
 

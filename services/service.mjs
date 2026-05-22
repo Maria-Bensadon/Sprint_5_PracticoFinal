@@ -56,51 +56,11 @@ export async function eliminarEnMongoS() {
     }
 };
 
+export async function crearPaisS(datos) {
 
-
-
-
-
-// const paisesAmerica = async () => {
-
-//     try {
-//         // consumo de api
-//         const paises = await axios.get('https://restcountries.com/v3.1/region/america');
-
-//         const paisesFiltrados = paises.data.filter(pais => { return pais.languages.spa });
-
-// const paisesLimpieza = paisesFiltrados.map(pais => {
-//     return {
-
-//         nombreComun: pais.name.common,
-//         nombreOficial: pais.name.official,
-//         capital: pais.capital,
-//         poblacion: pais.population,
-//         bandera: pais.flags,
-//         zonaHoraria: pais.timezones,
-//         limites: pais.borders,
-//         area: pais.area,
-//         region: pais.subregion,
-//         continente: pais.continents,
-//         creador: "Gaby Bensadon"
-
-//     }
-
-// });
-
-//         console.log(paisesLimpieza);
-//         return paisesLimpieza;
-
-//     } catch (error) {
-//         console.error('Error al consumir la API:', error);
-//     }
-// }
-
-// export default paisesAmerica; 
-
-/**
- 
-
-
-
- */
+    try {
+        return await paisesRepository.crearPaisR(datos);
+    } catch (error) {
+        console.error('Detalle de errores crearPaisS() (service):', error.message);
+    }
+}

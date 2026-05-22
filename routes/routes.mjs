@@ -1,7 +1,7 @@
 
 
 import express from 'express';
-import { obtenerPaisesEspañolController, guardarDatosController, borrarDatosController } from '../controller/controller.mjs';
+import { obtenerPaisesEspañolController, guardarDatosController, borrarDatosController, crearPaisController } from '../controller/controller.mjs';
 
 const router = express.Router();
 
@@ -19,8 +19,13 @@ const router = express.Router();
 
 export default router;
 
+// http://localhost:3000/todos
 router.get('/todos', obtenerPaisesEspañolController);
 
 router.post('/guardarTodos', guardarDatosController); 
 
 router.delete('/borrarTodos', borrarDatosController); 
+
+router.post('/crearPais', crearPaisController); 
+
+

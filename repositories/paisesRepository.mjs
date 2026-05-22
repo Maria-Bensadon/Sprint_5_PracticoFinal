@@ -44,6 +44,7 @@ class paisesRepository extends IRepository {
 
     // ruta metodo delete
     async eliminarEnMongoR() {
+
         try {
             const datosAEliminar = await paisesModelo.find({ creador: "Gaby Bensadon" });
             await paisesModelo.deleteMany({ creador: "Gaby Bensadon" });
@@ -53,6 +54,16 @@ class paisesRepository extends IRepository {
 
         } catch (error) {
             console.error('Detalle de errores eliminarEnMongoR (repositorio):', error.message);
+        }
+    }
+
+    async crearPaisR(datos) {
+
+        try {
+            const paisNew = await paisesModelo.create(datos);
+            return paisNew;
+        } catch (error) {
+            console.error('Detalle de errores crearPaisR (repo):', error.message);
         }
     }
 }
