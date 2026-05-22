@@ -8,7 +8,7 @@ class IRepository {
         throw new Error(`Método 'importarEnMongoDB()' no implementado`);
     }
 
-    borrarDeMongoDB() {
+    eliminarEnMongoR() {
         throw new Error(`Método 'borrarDeMongoDB()' no implementado`);
     }
 

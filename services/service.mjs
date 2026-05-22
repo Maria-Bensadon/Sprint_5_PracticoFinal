@@ -1,21 +1,7 @@
 
 import axios from 'axios';
+import { paisesAmerica } from '../repositories/paisesRepository.mjs';
 import paisesRepository from '../repositories/paisesRepository.mjs';
-
-
-const paisesAmerica = async () => {
-
-    try {
-        const paises = await axios.get('https://restcountries.com/v3.1/region/america');
-        return paises.data;
-
-    } catch (error) {
-        console.error('Error al consumir la API:', error);
-    }
-
-}
-
-export default paisesAmerica;
 
 
 export async function filtrarPaisesEspañol() {
@@ -45,21 +31,31 @@ export async function filtrarPaisesEspañol() {
     catch (error) {
         console.log(`Error al filtrar países: `, error.message);
     }
-}
+};
+
 
 export async function importarEnMongoS(datos) {
 
     try {
-        const datos = await filtrarPaisesEspañol(); 
-        return await paisesRepository.importarEnMongoR(datos);  
+        const datos = await filtrarPaisesEspañol();
+        return await paisesRepository.importarEnMongoR(datos);
 
     } catch (error) {
-        console.error('detalle de errores importarEnMongoS (servicio):', error.message);
+        console.error('Detalle de errores importarEnMongoS (servicio):', error.message);
     }
-
-
-
 };
+
+
+export async function eliminarEnMongoS() {
+
+    try {
+        return await paisesRepository.eliminarEnMongoR();
+
+    } catch (error) {
+        console.error('Detalle de errores eliminarEnMongoS (service):', error.message);
+    }
+};
+
 
 
 

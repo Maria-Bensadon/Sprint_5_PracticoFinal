@@ -22,7 +22,7 @@ const paisesSchema = new mongoose.Schema(
 
     });
 
-const paises = mongoose.model('paises', paisesSchema, 'Grupo-05');
-export default paises;
+const paisesModelo = mongoose.model('paises', paisesSchema, 'Grupo-05');
+export default paisesModelo;
 
 

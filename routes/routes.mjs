@@ -1,7 +1,7 @@
 
 
 import express from 'express';
-import { obtenerPaisesEspañolController, guardarDatosMongoDB } from '../controller/controller.mjs';
+import { obtenerPaisesEspañolController, guardarDatosController, borrarDatosController } from '../controller/controller.mjs';
 
 const router = express.Router();
 
@@ -21,6 +21,6 @@ export default router;
 
 router.get('/todos', obtenerPaisesEspañolController);
 
-router.post('/guardarTodos', guardarDatosMongoDB); 
+router.post('/guardarTodos', guardarDatosController); 
 
-
+router.delete('/borrarTodos', borrarDatosController); 
