@@ -63,4 +63,31 @@ export async function crearPaisS(datos) {
     } catch (error) {
         console.error('Detalle de errores crearPaisS() (service):', error.message);
     }
-}
+};
+
+export async function encontrarPaisS(nombreComun, valor) {
+    try {
+        return await paisesRepository.encontrarPaisR(nombreComun, valor);
+    } catch (error) {
+        console.error('Detalle de errores encontrarPaisS() (service):', error.message);
+    }
+
+};
+
+export async function actualizarPaisS(id, datosActualizados) {
+    try {
+        return await paisesRepository.actualizarPaisR(id, datosActualizados);
+    } catch (error) {
+        console.error('Detalle de errores actualizarPaisS() (service):', error.message);
+    }
+};
+
+export async function eliminarPaisS(id) {
+    try {
+        return await paisesRepository.eliminarPaisR(id);
+    } catch (error) {
+        console.error('Detalle de errores eliminarPais (service):', error.message);
+    }
+};
+
+

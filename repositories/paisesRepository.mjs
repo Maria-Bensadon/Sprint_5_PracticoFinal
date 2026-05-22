@@ -66,6 +66,40 @@ class paisesRepository extends IRepository {
             console.error('Detalle de errores crearPaisR (repo):', error.message);
         }
     }
-}
+
+    async encontrarPaisR(valor) {
+        try {
+
+            const paisEncontrado = await paisesModelo.findOne({ nombreComun: valor, creador: "Gaby Bensadon" });
+            console.log(`prueba encontrarPais correcta`);
+            return paisEncontrado;
+
+        } catch (error) {
+            console.error('Detalle de errores encontrarPaisR (repo):', error.message);
+        }
+    }
+
+    async actualizarPaisR(id, datosActualizados) {
+        try {
+            const paisActualizado = await paisesModelo.findByIdAndUpdate(id, datosActualizados);
+            console.log(`prueba paisActualizado correcta`);
+            return paisActualizado;
+        }
+        catch (error) {
+            console.error('Detalle de errores actualizarPaisR (repo):', error.message);
+        }
+    }
+
+    async eliminarPaisR(id) {
+        try {
+            const paisEliminado = await paisesModelo.findByIdAndDelete(id, { creador: "Gaby Bensadon" });
+            console.log(`prueba eliminarPais (repo) correcta`);
+            return paisEliminado;
+        } catch (error) {
+            console.error('Detalle de errores eliminarPais (repo):', error.message);
+        }
+    }
+
+};
 
 export default new paisesRepository();

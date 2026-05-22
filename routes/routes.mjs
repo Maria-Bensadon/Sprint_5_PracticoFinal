@@ -1,7 +1,11 @@
 
 
 import express from 'express';
-import { obtenerPaisesEspañolController, guardarDatosController, borrarDatosController, crearPaisController } from '../controller/controller.mjs';
+import {
+    obtenerPaisesEspañolController, guardarDatosController,
+    borrarDatosController, crearPaisController, encontrarPaisController,
+    actualizarPaisController, eliminarPaisController
+} from '../controller/controller.mjs';
 
 const router = express.Router();
 
@@ -22,10 +26,17 @@ export default router;
 // http://localhost:3000/todos
 router.get('/todos', obtenerPaisesEspañolController);
 
-router.post('/guardarTodos', guardarDatosController); 
+router.post('/guardarTodos', guardarDatosController);
 
-router.delete('/borrarTodos', borrarDatosController); 
+router.delete('/borrarTodos', borrarDatosController);
 
-router.post('/crearPais', crearPaisController); 
+router.post('/crearPais', crearPaisController);
 
+// http://localhost:3000/buscar/nombreComun/:valor
+router.get('/buscar/:atributo/:valor', encontrarPaisController);
+
+// http://localhost:3000/buscar/:id
+router.put('/buscar/:id', actualizarPaisController);
+
+router.delete('/eliminar/:id', eliminarPaisController);
 

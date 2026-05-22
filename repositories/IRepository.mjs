@@ -12,19 +12,19 @@ class IRepository {
         throw new Error(`Método 'borrarDeMongoDB()' no implementado`);
     }
 
-    crearPais() {
+    crearPaisR() {
         throw new Error(`Método 'crearPais()' no implementado`);
     }
 
-    editarPais() {
+    encontrarPaisR() {
         throw new Error(`Método 'editarPais()' no implementado`);
     }
 
-    actualizarPais() {
+    actualizarPaisR() {
         throw new Error(`Método 'actualizarPais()' no implementado`);
     }
 
-    eliminarPais() {
+    eliminarPaisR() {
         throw new Error(`Método 'eliminarPais()' no implementado`);
     }
 
