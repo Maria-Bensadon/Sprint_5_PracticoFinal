@@ -4,11 +4,9 @@ import paisesModelo from "../models/modelo.mjs";
 import axios from "axios";
 
 export const paisesAmerica = async () => {
-
     try {
         const paises = await axios.get('https://restcountries.com/v3.1/region/america');
         return paises.data;
-
     } catch (error) {
         console.error('Error al consumir la API:', error);
     }
@@ -20,10 +18,8 @@ class paisesRepository extends IRepository {
 
     // ruta metodo GET 
     async obtenerTodos() {
-
         try {
             return await paisesModelo.find();
-
         } catch (error) {
             console.log('Error Mongo: ', error.message);
         }
@@ -51,7 +47,6 @@ class paisesRepository extends IRepository {
             console.log(`prueba deleteMany correcta`);
             return datosAEliminar;
 
-
         } catch (error) {
             console.error('Detalle de errores eliminarEnMongoR (repositorio):', error.message);
         }
@@ -68,8 +63,8 @@ class paisesRepository extends IRepository {
     }
 
     async encontrarPaisR(valor) {
+        
         try {
-
             const paisEncontrado = await paisesModelo.findOne({ nombreComun: valor, creador: "Gaby Bensadon" });
             console.log(`prueba encontrarPais correcta`);
             return paisEncontrado;
@@ -80,6 +75,7 @@ class paisesRepository extends IRepository {
     }
 
     async actualizarPaisR(id, datosActualizados) {
+        
         try {
             const paisActualizado = await paisesModelo.findByIdAndUpdate(id, datosActualizados);
             console.log(`prueba paisActualizado correcta`);
@@ -91,6 +87,7 @@ class paisesRepository extends IRepository {
     }
 
     async eliminarPaisR(id) {
+      
         try {
             const paisEliminado = await paisesModelo.findByIdAndDelete(id, { creador: "Gaby Bensadon" });
             console.log(`prueba eliminarPais (repo) correcta`);

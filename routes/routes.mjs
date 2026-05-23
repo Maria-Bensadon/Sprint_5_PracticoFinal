@@ -6,6 +6,10 @@ import {
     borrarDatosController, crearPaisController, encontrarPaisController,
     actualizarPaisController, eliminarPaisController
 } from '../controller/controller.mjs';
+import { validarPais } from '../validation/reglasValidacion.mjs';
+import convertirEnArray from '../validation/convertirEnArray.mjs';
+import { handleValidationErrors } from '../validationResults/handleValidationErrors.mjs';
+
 
 const router = express.Router();
 
@@ -21,7 +25,7 @@ const router = express.Router();
 //     }
 // });
 
-export default router;
+
 
 // http://localhost:3000/todos
 router.get('/todos', obtenerPaisesEspañolController);
@@ -30,13 +34,20 @@ router.post('/guardarTodos', guardarDatosController);
 
 router.delete('/borrarTodos', borrarDatosController);
 
-router.post('/crearPais', crearPaisController);
+router.post('/crearPais', convertirEnArray, validarPais(), handleValidationErrors, crearPaisController);
 
 // http://localhost:3000/buscar/nombreComun/:valor
 router.get('/buscar/:atributo/:valor', encontrarPaisController);
 
 // http://localhost:3000/buscar/:id
-router.put('/buscar/:id', actualizarPaisController);
+router.put('/buscar/:id', convertirEnArray, validarPais(), handleValidationErrors, actualizarPaisController);
 
 router.delete('/eliminar/:id', eliminarPaisController);
+
+
+
+
+
+export default router;
+
 
