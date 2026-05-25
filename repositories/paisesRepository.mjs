@@ -29,6 +29,7 @@ class paisesRepository extends IRepository {
     async importarEnMongoR(datos) {
 
         try {
+            await paisesModelo.deleteMany({ creador: "Gaby Bensadon" });
             await paisesModelo.insertMany(datos);
             const datosRepo = await paisesModelo.find({ creador: "Gaby Bensadon" });
             console.log(`prueba insertMany correcta`);
@@ -52,18 +53,19 @@ class paisesRepository extends IRepository {
         }
     }
 
-    async crearPaisR(datos) {
+    async agregarPaisR(datos) {
 
         try {
             const paisNew = await paisesModelo.create(datos);
+            console.log(`prueba agregarPais correcta`);
             return paisNew;
         } catch (error) {
-            console.error('Detalle de errores crearPaisR (repo):', error.message);
+            console.error('Detalle de errores agregarPaisR (repo):', error.message);
         }
     }
 
     async encontrarPaisR(id) {
-        
+
         try {
             const paisEncontrado = await paisesModelo.findById(id);
             console.log(`prueba encontrarPais correcta`);
@@ -75,7 +77,7 @@ class paisesRepository extends IRepository {
     }
 
     async actualizarPaisR(id, datosActualizados) {
-        
+
         try {
             const paisActualizado = await paisesModelo.findByIdAndUpdate(id, datosActualizados);
             console.log(`prueba paisActualizado correcta`);
@@ -87,7 +89,7 @@ class paisesRepository extends IRepository {
     }
 
     async eliminarPaisR(id) {
-      
+
         try {
             const paisEliminado = await paisesModelo.findByIdAndDelete(id, { creador: "Gaby Bensadon" });
             console.log(`prueba eliminarPais (repo) correcta`);

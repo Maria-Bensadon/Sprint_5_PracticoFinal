@@ -3,17 +3,17 @@
 import express from 'express';
 import {
     obtenerPaisesEspañolController, guardarDatosController,
-    borrarDatosController, crearPaisController, encontrarPaisController,
+    borrarDatosController, agregarPaisController, encontrarPaisController,
     actualizarPaisController, eliminarPaisController
 } from '../controller/controller.mjs';
 import { validarPais } from '../validation/reglasValidacion.mjs';
 import convertirEnArray from '../validation/convertirEnArray.mjs';
-import { handleValidationErrors, handleValidationErrorsCrearPais } from '../validationResults/handleValidationErrors.mjs';
+import { handleValidationErrors, handleValidationErrorsAgregarPais } from '../validationResults/handleValidationErrors.mjs';
 
 
 const router = express.Router();
 
-router.get('/crearPais', (req, res) => {
+router.get('/agregarPais', (req, res) => {
     res.render('addPais', { title: 'Agregar Pais' });
 });
 
@@ -30,8 +30,8 @@ router.post('/guardarTodos', guardarDatosController);
 
 router.delete('/borrarTodos', borrarDatosController);
 
-// http://localhost:3000/crearPais
-router.post('/crearPais', convertirEnArray, validarPais(), handleValidationErrorsCrearPais, crearPaisController);
+// http://localhost:3000/agregarPais
+router.post('/agregarPais', convertirEnArray, validarPais(), handleValidationErrorsAgregarPais, agregarPaisController);
 
 // http://localhost:3000/buscar/:id
 router.put('/editar/:id', convertirEnArray, validarPais(), handleValidationErrors, actualizarPaisController);

@@ -10,15 +10,13 @@ const paisesSchema = new mongoose.Schema(
         poblacion: { type: Number, min: 0 },
         bandera: {
             png: { type: String },
-            svg: { type: String },
-            alt: { type: String },
         },
         zonaHoraria: [String],
         limites: [String],
         area: { type: Number, min: 0 },
         region: { type: String },
         creador: { type: String, required: true },
-
+        
     });
 
 const paisesModelo = mongoose.model('paises', paisesSchema, 'Grupo-05');

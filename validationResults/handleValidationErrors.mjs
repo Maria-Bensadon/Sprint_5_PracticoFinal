@@ -21,7 +21,7 @@ const handleValidationErrors = (req, res, next) => {
 
 export { handleValidationErrors }; 
 
-export const handleValidationErrorsCrearPais = (req, res, next) => {
+export const handleValidationErrorsAgregarPais = (req, res, next) => {
 
     const errores = validationResult(req);
 

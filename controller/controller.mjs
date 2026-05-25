@@ -1,7 +1,7 @@
 
 import {
     filtrarPaisesEspañol, importarEnMongoS,
-    eliminarEnMongoS, crearPaisS, encontrarPaisS,
+    eliminarEnMongoS, agregarPaisS, encontrarPaisS,
     actualizarPaisS, eliminarPaisS,
     obtenerPaisesS
 } from "../services/service.mjs";
@@ -54,25 +54,21 @@ export async function borrarDatosController(req, res) {
     } catch (error) {
         res.status(500).send({
             mensaje: "Error al eliminar los países (controlador)",
-            error: error.message
         });
         console.error('detalle de errores borrarDatosController:', error.message);
     }
 };
 
 
-export async function crearPaisController(req, res) {
+export async function agregarPaisController(req, res) {
 
     try {
         const datos = req.body;
-         console.log('datos recibidos:', datos);
-        const paises = await crearPaisS(datos);
-         console.log('pais creado:', paises);  
+        const paises = await agregarPaisS(datos);
 
         if (!paises) {
             return res.status(400).send({
-                mensaje: "No se pudo crear un nuevo pais (error 400)",
-                error: error.message
+                mensaje: "No se pudo agregar un nuevo pais (error 400)",
             });
         }
 
@@ -80,10 +76,10 @@ export async function crearPaisController(req, res) {
 
     } catch (error) {
         res.status(500).send({
-            mensaje: "Error al crear un nuevo pais (controlador)",
+            mensaje: "Error al agregar un nuevo pais (controlador)",
             error: error.message
         });
-        console.error('detalle de errores crearPaisController:', error.message);
+        console.error('detalle de errores agregarPaisController:', error.message);
     }
 };
 
@@ -122,7 +118,7 @@ export async function actualizarPaisController(req, res) {
 
         if (!paises) {
             return res.status(400).send({
-                mensaje: "No se pudo crear un nuevo pais (error 400)",
+                mensaje: "No se pudo agregar un nuevo pais (error 400)",
             });
         }
 
@@ -136,6 +132,7 @@ export async function actualizarPaisController(req, res) {
         console.error('detalle de errores actualizarPaisController:', error.message);
     }
 };
+
 
 export async function eliminarPaisController(req, res) {
     try {

@@ -62,12 +62,12 @@ export async function eliminarEnMongoS() {
     }
 };
 
-export async function crearPaisS(datos) {
+export async function agregarPaisS(datos) {
 
     try {
-        return await paisesRepository.crearPaisR(datos);
+        return await paisesRepository.agregarPaisR(datos);
     } catch (error) {
-        console.error('Detalle de errores crearPaisS() (service):', error.message);
+        console.error('Detalle de errores agregarPaisS() (service):', error.message);
     }
 };
 
