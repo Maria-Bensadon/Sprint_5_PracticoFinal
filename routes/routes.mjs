@@ -8,24 +8,20 @@ import {
 } from '../controller/controller.mjs';
 import { validarPais } from '../validation/reglasValidacion.mjs';
 import convertirEnArray from '../validation/convertirEnArray.mjs';
-import { handleValidationErrors } from '../validationResults/handleValidationErrors.mjs';
+import { handleValidationErrors, handleValidationErrorsCrearPais } from '../validationResults/handleValidationErrors.mjs';
 
 
 const router = express.Router();
 
-// router.get('/', async (req, res) => {
+router.get('/crearPais', (req, res) => {
+    res.render('addPais', { title: 'Agregar Pais' });
+});
 
-//     try {
-//         //console.log('si anda el router'); 
-//         const respuesta = await paisesAmerica();
-//         res.status(200).json(respuesta);
-//     } catch (error) {
-//         console.error('detalle de errores (router):', error.message);
-//         res.status(500).json({ message: 'Error al consumir la API' });
-//     }
-// });
+router.get('/editar/:id', encontrarPaisController);
 
+router.get('/guardarTodos', guardarDatosController);
 
+router.get('/borrarTodos', borrarDatosController)
 
 // http://localhost:3000/todos
 router.get('/todos', obtenerPaisesEspañolController);
@@ -34,17 +30,16 @@ router.post('/guardarTodos', guardarDatosController);
 
 router.delete('/borrarTodos', borrarDatosController);
 
-router.post('/crearPais', convertirEnArray, validarPais(), handleValidationErrors, crearPaisController);
-
-// http://localhost:3000/buscar/nombreComun/:valor
-router.get('/buscar/:atributo/:valor', encontrarPaisController);
+// http://localhost:3000/crearPais
+router.post('/crearPais', convertirEnArray, validarPais(), handleValidationErrorsCrearPais, crearPaisController);
 
 // http://localhost:3000/buscar/:id
-router.put('/buscar/:id', convertirEnArray, validarPais(), handleValidationErrors, actualizarPaisController);
+router.put('/editar/:id', convertirEnArray, validarPais(), handleValidationErrors, actualizarPaisController);
 
 router.delete('/eliminar/:id', eliminarPaisController);
 
-
+// http://localhost:3000/buscar/nombreComun/:valor
+router.get('/buscar/:atributo/:valor', encontrarPaisController);
 
 
 

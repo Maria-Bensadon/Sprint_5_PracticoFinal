@@ -13,13 +13,13 @@ export const paisesAmerica = async () => {
 
 };
 
-
 class paisesRepository extends IRepository {
 
     // ruta metodo GET 
-    async obtenerTodos() {
+    async obtenerTodosR() {
         try {
-            return await paisesModelo.find();
+            // los datos se obtienen de la base de datos
+            return await paisesModelo.find({ creador: "Gaby Bensadon" });
         } catch (error) {
             console.log('Error Mongo: ', error.message);
         }
@@ -29,8 +29,8 @@ class paisesRepository extends IRepository {
     async importarEnMongoR(datos) {
 
         try {
-            const datosRepo = await paisesModelo.find();
             await paisesModelo.insertMany(datos);
+            const datosRepo = await paisesModelo.find({ creador: "Gaby Bensadon" });
             console.log(`prueba insertMany correcta`);
             return datosRepo;
         } catch (error) {
@@ -62,10 +62,10 @@ class paisesRepository extends IRepository {
         }
     }
 
-    async encontrarPaisR(valor) {
+    async encontrarPaisR(id) {
         
         try {
-            const paisEncontrado = await paisesModelo.findOne({ nombreComun: valor, creador: "Gaby Bensadon" });
+            const paisEncontrado = await paisesModelo.findById(id);
             console.log(`prueba encontrarPais correcta`);
             return paisEncontrado;
 

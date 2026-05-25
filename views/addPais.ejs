@@ -1,0 +1,96 @@
+<body>
+    <main>
+        <h1>Agregar un país</h1>
+
+        <form action="/paises/crearPais" method="post" novalidate>
+
+            <label>Nombre Común</label>
+            <input type="text" name="nombreComun" minlength="3" maxlength="90" required> <br>
+
+            <label>Nombre Oficial</label>
+            <input type="text" name="nombreOficial" minlength="3" maxlength="90" required> <br>
+
+            <label>Capital</label>
+            <input type="text" name="capital" min="1" required> <br>
+
+            <label>Poblacion</label>
+            <input type="number" name="poblacion" required minlength="3" maxlength="90"> <br>
+
+            <label>Bandera</label>
+            <input type="text" name="bandera"> <br>
+
+            <label>Zona Horaria</label>
+            <input type="text" name="zonaHoraria"> <br>
+
+            <label>Límites</label>
+            <input type="text" name="limites" minlength="3" required> <br>
+
+            <label>Area</label>
+            <input type="number" name="area" min="1" required> <br>
+
+            <label>Región</label>
+            <input type="text" name="region"> <br>
+
+            <label>Creador</label>
+            <input type="text" name="creador" value="Gaby Bensadon"> <br>
+
+            <!-- Botón -->
+            <button type="submit">Agregar Pais</button>
+            <a href="/paises/todos">Volver al dashboard</a>
+
+        </form>
+    </main>
+
+    <script>
+
+        const formularios = document.querySelector("form");
+        formularios.addEventListener("submit", (formulario) => {
+
+            const nombreComunIngresado = document.querySelector('[name="nombreComun"]').value.trim();
+            const nombreOficialIngresado = document.querySelector('[name="nombreOficial"]').value.trim();
+            const capitalIngresada = document.querySelector('[name="capital"]').value.trim().split(",").map(capital => capital.trim());
+            const poblacionIngresada = parseInt(document.querySelector('[name="poblacion"]').value.trim());
+            const limitesIngresados = document.querySelector('[name="limites"]').value.trim().split(",").map(limite => limite.trim());
+            const areaIngresada = parseInt(document.querySelector('[name="area"]').value.trim());
+            const creador = document.querySelector('[name = "creador"]').value.trim();
+
+            let errores = [];
+
+            if ((nombreComunIngresado.length < 3) || (nombreComunIngresado.length > 90)) {
+                errores.push("- El nombre Comun del pais debe tener entre 3 y 90 caracteres.");
+            }
+
+            if ((nombreOficialIngresado.length < 3) || (nombreOficialIngresado.length > 90)) {
+                errores.push("- El nombre Oficial debe tener entre 3 y 90 caracteres.");
+            }
+
+            capitalIngresada.forEach(capital => {
+                if ((capital.length < 3) || (capital.length > 90)) {
+                    errores.push("- La capital debe tener entre 3 y 90 caracteres.");
+                }
+            });
+
+            if (isNaN(poblacionIngresada) || (poblacionIngresada < 1)) {
+                errores.push("- La poblacion debe ser un numero y ser mayor o igual que 1.");
+            }
+
+            limitesIngresados.forEach(limite => {
+                if ((limite.length < 3) || (limite.length > 3) || (limite !== limite.toUpperCase())) {
+                    errores.push("- Cada limite deben estar compuesto por 3 letras mayúsculas");
+                }
+            });
+
+            if (isNaN(areaIngresada) || (areaIngresada < 1)) {
+                errores.push("- El area ingresada debe ser un numero y ser mayor o igual que 1.");
+            }
+
+            if (errores.length > 0) {
+
+                formulario.preventDefault();
+                alert(errores.join("\n"));
+
+            }
+        });
+
+    </script>
+</body>

@@ -20,3 +20,19 @@ const handleValidationErrors = (req, res, next) => {
 };
 
 export { handleValidationErrors }; 
+
+export const handleValidationErrorsCrearPais = (req, res, next) => {
+
+    const errores = validationResult(req);
+
+    if (!errores.isEmpty()) {
+        return res.render('addPais', {
+            errors: errores.array().map(error =>
+            ({
+                field: error.path,
+                message: error.msg,
+            }))
+        });
+    }
+    next();
+}

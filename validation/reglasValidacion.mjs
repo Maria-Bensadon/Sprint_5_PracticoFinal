@@ -26,10 +26,6 @@ export const validarPais = () => [
         .notEmpty().withMessage('Debe indicar la cantidad de poblacion')
         .isInt({ min: 1 }).withMessage('La poblacion debe ser mayor a 1'),
 
-    body('area')
-        .notEmpty().withMessage('Debe indicar el area')
-        .isInt({ min: 1 }).withMessage('El area debe ser mayor a 1'),
-
     body('limites')
         .isArray({ min: 1 })
         .withMessage('El pais debe tener al menos 1 limite'),
@@ -39,6 +35,10 @@ export const validarPais = () => [
         .trim()
         .toUpperCase()
         .isLength({ min: 3, max: 3 }).withMessage('Cada limite debe tener 3 letras'),
+
+    body('area')
+        .notEmpty().withMessage('Debe indicar el area')
+        .isInt({ min: 1 }).withMessage('El area debe ser mayor a 1'),
 ];
 
 

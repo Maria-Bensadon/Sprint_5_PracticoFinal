@@ -1,0 +1,76 @@
+<body>
+    <main>
+        <h1 class="tituloTabla">Lista de Paises Hispanohablantes de América</h1>
+
+        <div class="contenedor">
+            <table>
+                <thead>
+                    <!-- Fila -->
+                    <tr class="encabezados">
+                        <!-- Columna -->
+                        <th>Nombre Comun</th>
+                        <th>Nombre Oficial</th>
+                        <th>Capital</th>
+                        <th>Población</th>
+                        <th>Bandera</th>
+                        <th>Zona Horaria</th>
+                        <th>Limites</th>
+                        <th>Area</th>
+                        <th>Región</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% paises.forEach(pais=> { %>
+                        <tr>
+                            <td>
+                                <%= pais.nombreComun %>
+                            </td>
+                            <td>
+                                <%= pais.nombreOficial %>
+                            </td>
+                            <td>
+                                <%= pais.capital %>
+                            </td>
+                            <td>
+                                <%= pais.poblacion %>
+                            </td>
+                            <td>
+                                <img src=" <%= pais.bandera.png %>" alt="" width="40px" align-items="center">
+                            </td>
+                            <td>
+                                <%= pais.zonaHoraria %>
+                            </td>
+                            <td>
+                                <%= pais.limites %>
+                            </td>
+                            <td>
+                                <%= pais.area %>
+                            </td>
+                            <td>
+                                <%= pais.region %>
+                            </td>
+
+                            <td>
+                                <a href="/paises/editar/<%= pais._id %>"
+                                    class="botonEditar palabras">
+                                    Editar
+                                </a>
+                            </td>
+                            <td>
+                                <form action="/paises/eliminar/<%= pais._id %>?_method=DELETE" method="POST">
+                                    <button class="botonEditar palabras" type="submit"
+                                        onclick="return confirm('¿Estas seguro de eliminar este pais?')">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
+
+                        </tr>
+
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>

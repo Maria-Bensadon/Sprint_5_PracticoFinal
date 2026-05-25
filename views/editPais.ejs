@@ -1,0 +1,96 @@
+<body>
+    <main>
+        <h1> Editar País</h1>
+
+        <form action="/paises/editar/<%= pais._id%>?_method=PUT" method="post" novalidate class = "formulario">
+
+            <label>Nombre Común</label>
+            <input type="text" name="nombreComun" value="<%= pais.nombreComun %>" minlength="3" maxlength="90" required class = "input"> <br>
+
+            <label>Nombre Oficial</label>
+            <input type="text" name="nombreOficial" value="<%= pais.nombreOficial %>" minlength="3" maxlength="90" required class = "input"> <br>
+
+            <label>Capital</label>
+            <input type="text" name="capital" value="<%= pais.capital %>" min="1" required class = "input"> <br>
+
+            <label>Poblacion</label>
+            <input type="number" name="poblacion" value="<%= pais.poblacion %>" required minlength="3" maxlength="90" class = "input"> <br>
+
+            <label>Bandera</label>
+            <input type="text" name="bandera" value="<%= pais.bandera %>" class = "input"> <br>
+
+            <label>Zona Horaria</label>
+            <input type="text" name="zonaHoraria" value="<%= pais.zonaHoraria %>" class = "input"> <br>
+
+            <label>Límites</label>
+            <input type="text" name="limites" value="<%= pais.limites %>" minlength="3" required class = "input"> <br>
+
+            <label>Area</label>
+            <input type="number" name="area" value="<%= pais.area %>" min="1" required class = "input"> <br>
+
+            <label>Región</label>
+            <input type="text" name="region" value="<%= pais.region %>" class = "input"> <br>
+
+            <label>Creador</label>
+            <input type="text" name="creador" value="Gaby Bensadon" class = "input"> <br>
+
+            <!-- Botón -->
+            <button type="submit" class="botonEditar palabras">Editar Pais</button>
+            <a href="/paises/todos" class="botonEditar palabras">Volver al dashboard</a>
+
+        </form>
+    </main>
+
+    <script>
+
+        const formularios = document.querySelector("form");
+        formularios.addEventListener("submit", (formulario) => {
+
+            const nombreComunIngresado = document.querySelector('[name="nombreComun"]').value.trim();
+            const nombreOficialIngresado = document.querySelector('[name="nombreOficial"]').value.trim();
+            const capitalIngresada = document.querySelector('[name="capital"]').value.trim().split(",").map(capital => capital.trim());
+            const poblacionIngresada = parseInt(document.querySelector('[name="poblacion"]').value.trim());
+            const limitesIngresados = document.querySelector('[name="limites"]').value.trim().split(",").map(limite => limite.trim());
+            const areaIngresada = parseInt(document.querySelector('[name="area"]').value.trim());
+            const creador = document.querySelector('[name = "creador"]').value.trim();
+
+            let errores = [];
+
+            if ((nombreComunIngresado.length < 3) || (nombreComunIngresado.length > 90)) {
+                errores.push("- El nombre Comun del pais debe tener entre 3 y 90 caracteres.");
+            }
+
+            if ((nombreOficialIngresado.length < 3) || (nombreOficialIngresado.length > 90)) {
+                errores.push("- El nombre Oficial debe tener entre 3 y 90 caracteres.");
+            }
+
+            capitalIngresada.forEach(capital => {
+                if ((capital.length < 3) || (capital.length > 90)) {
+                    errores.push("- La capital debe tener entre 3 y 90 caracteres.");
+                }
+            });
+
+            if (isNaN(poblacionIngresada) || (poblacionIngresada < 1)) {
+                errores.push("- La poblacion debe ser un numero y ser mayor o igual que 1.");
+            }
+
+            limitesIngresados.forEach(limite => {
+                if ((limite.length < 3) || (limite.length > 3) || (limite !== limite.toUpperCase())) {
+                    errores.push("- Cada limite deben estar compuesto por 3 letras mayúsculas");
+                }
+            });
+
+            if (isNaN(areaIngresada) || (areaIngresada < 1)) {
+                errores.push("- El area ingresada debe ser un numero y ser mayor o igual que 1.");
+            }
+
+            if (errores.length > 0) {
+
+                formulario.preventDefault();
+                alert(errores.join("\n"));
+
+            }
+        });
+
+    </script>
+</body>

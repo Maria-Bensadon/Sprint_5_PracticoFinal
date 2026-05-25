@@ -1,7 +1,10 @@
-# Sprint_5_PracticoFinal
-Sprint Nro. 5 : Práctico Final
+# Sprint 5 - PracticoFinal
 
-## Requerimientos
+El objetivo del Trabajo Práctico final es realizar un servidor en NodeJS con arquitectura MCV en capas.
+La aplicacion consume una API REST externa, guardando su información en MongoDB. Además de proveer un
+dashboard con operaciones CRUD.
+
+## Requerimientos del servidor
     1. Consuma datos de una API externa (listo)
     2. Procese y filtre los datos que tengan español como idioma (listo)
     3. Guarde los datos procesados en MongoDB (estructura limpia y consistente) (revisar!)
@@ -10,25 +13,16 @@ Sprint Nro. 5 : Práctico Final
     5. Las vistas deben tener como minimo un Layout, un Landing, navbar y footer.
     6. Incluya validaciones robustas en el backend para el envio de formularios.
 
+## Tecnologías
+- Node.js v20+ - Módulos ES con `.mjs`
+- Express ^5.2.1 - Libreria utilizada
+- NPM - gestiona las librerias del proyecto
+- Mongoose ^9.6.2 - Object Data Modeling para MongoDB
+- EJS ^5.0.2 - Motor de plantillas para las vistas
+- Express-Ejs-Layouts ^2.5.1 - Layout compartido entre vistas
+- Express-Validator ^7.3.2 - Validaciones en el backend
+- Axios ^1.16.1 - Consumo de la API externa
+- dotenv ^17.4.2 - Manejo de variables de entorno
+- Method-Override ^3.0.0 - Soporte para métodos PUT y DELETE desde formularios HTML
 
-## Pasos recomendados
-
-    1. Configuracion inicial. Instalacion de dependencias: express, express-validatos, 
-    ejs, mongoose, express-ejs-layouts, method-override, dotenv
-
-    2. Consumo de api. Crear un servicio que obtenga todos los paises y luego los 
-    filtre segun el lenguaje español. Tambien debe eliminar campos, y agregar "creador"
-
-     - https://restcountries.com/v3.1/region/america
-
-    3. Definir esquema mongoose solo con propiedade necesarias y validadas
-
-    4. Guardar datos en MongoDB. Verificar integridad (tipos y valores)
-
-    5. Listar, agregar, editar y eliminar paises. Manejar errores
-
-    6. Implementar reglas y mensajes. Prevenir guardado invalido. 
-
-    7. vista
-        a) layouts, landing, dashboard, formularios
-        b) nivel avanzado (no obligatorio)....
+## Pasos de Ejecución

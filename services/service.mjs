@@ -21,7 +21,6 @@ export async function filtrarPaisesEspañol() {
                     limites: pais.borders,
                     area: pais.area,
                     region: pais.subregion,
-                    continente: pais.continents,
                     creador: "Gaby Bensadon"
                 }
             });
@@ -33,6 +32,13 @@ export async function filtrarPaisesEspañol() {
     }
 };
 
+export async function obtenerPaisesS() {
+    try {
+        return await paisesRepository.obtenerTodosR(); 
+    } catch (error) {
+        console.error('Detalle de errores importarEnMongoS (servicio):', error.message);
+    }
+}; 
 
 export async function importarEnMongoS(datos) {
 
@@ -65,9 +71,9 @@ export async function crearPaisS(datos) {
     }
 };
 
-export async function encontrarPaisS(nombreComun, valor) {
+export async function encontrarPaisS(id) {
     try {
-        return await paisesRepository.encontrarPaisR(nombreComun, valor);
+        return await paisesRepository.encontrarPaisR(id);
     } catch (error) {
         console.error('Detalle de errores encontrarPaisS() (service):', error.message);
     }

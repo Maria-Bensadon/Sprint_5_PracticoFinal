@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Paises</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+
+<body>
+
+    <!-- 
+        Navbar: en esta parte se incluye el contenido de la barra de navegacion 
+        del archivo navbar en la carpeta partials 
+    -->
+    <%- include('partials/navbar') %>
+
+        <main>
+            <!-- se inserta el contenido de cada vista -->
+            <%- body %>
+        </main>
+
+        <!-- Footer: hace lo mismo -->
+        <%- include('partials/footer') %>
+</body>
+
+</html>

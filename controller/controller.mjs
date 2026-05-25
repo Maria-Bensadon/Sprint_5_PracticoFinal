@@ -2,15 +2,16 @@
 import {
     filtrarPaisesEspañol, importarEnMongoS,
     eliminarEnMongoS, crearPaisS, encontrarPaisS,
-    actualizarPaisS, eliminarPaisS
+    actualizarPaisS, eliminarPaisS,
+    obtenerPaisesS
 } from "../services/service.mjs";
 
 
 export async function obtenerPaisesEspañolController(req, res) {
 
     try {
-        const paises = await filtrarPaisesEspañol();
-        res.status(200).json(paises);
+        const paises = await obtenerPaisesS();
+        res.render('dashboard', { paises });
     }
 
     catch (error) {
@@ -29,11 +30,8 @@ export async function guardarDatosController(req, res) {
 
     try {
 
-        const datosAImportar = await importarEnMongoS();
-        res.status(200).json({
-            mensaje: 'Se importaron los siguientes datos:',
-            datos: datosAImportar
-        });
+        const paises = await importarEnMongoS();
+        res.render('dashboard', { paises });
 
     } catch (error) {
 
@@ -49,12 +47,9 @@ export async function guardarDatosController(req, res) {
 export async function borrarDatosController(req, res) {
 
     try {
-        const datosEliminados = await eliminarEnMongoS();
+        const paises = await eliminarEnMongoS();
 
-        return res.status(200).json({
-            mensaje: 'Se eliminaron los siguientes datos:',
-            datos: datosEliminados
-        });
+        res.redirect('/paises/todos');
 
     } catch (error) {
         res.status(500).send({
@@ -70,19 +65,18 @@ export async function crearPaisController(req, res) {
 
     try {
         const datos = req.body;
-        const nuevoPais = await crearPaisS(datos);
+         console.log('datos recibidos:', datos);
+        const paises = await crearPaisS(datos);
+         console.log('pais creado:', paises);  
 
-        if (!nuevoPais) {
-            res.status(400).send({
+        if (!paises) {
+            return res.status(400).send({
                 mensaje: "No se pudo crear un nuevo pais (error 400)",
                 error: error.message
             });
         }
 
-        res.status(200).json({
-            mensaje: 'Nuevo país creado: ',
-            datos: nuevoPais
-        });
+        res.redirect('/paises/todos');
 
     } catch (error) {
         res.status(500).send({
@@ -97,19 +91,16 @@ export async function crearPaisController(req, res) {
 export async function encontrarPaisController(req, res) {
 
     try {
-        const { valor } = req.params;
-        const encontrado = await encontrarPaisS(valor);
+        const id = req.params.id;
+        const pais = await encontrarPaisS(id);
 
-        if (!encontrado) {
-            res.status(404).send({
+        if (!pais) {
+            return res.status(404).send({
                 mensaje: "No se pudo encontrar el pais (error 400)",
             });
         }
 
-        res.status(200).json({
-            mensaje: 'Pais encontrado: ',
-            datos: encontrado
-        });
+        res.render('editPais', { pais });;
 
     } catch (error) {
 
@@ -127,19 +118,15 @@ export async function actualizarPaisController(req, res) {
     try {
         const id = req.params.id;
         const datosActualizados = req.body;
-        const actualizar = await actualizarPaisS(id, datosActualizados);
+        const paises = await actualizarPaisS(id, datosActualizados);
 
-        if (!actualizar) {
-            res.status(400).send({
+        if (!paises) {
+            return res.status(400).send({
                 mensaje: "No se pudo crear un nuevo pais (error 400)",
-                error: error.message
             });
         }
 
-        res.status(200).json({
-            mensaje: 'Pais encontrado: ',
-            datos: actualizar
-        });
+        res.redirect('/paises/todos');
 
     } catch (error) {
         res.status(500).send({
@@ -153,18 +140,15 @@ export async function actualizarPaisController(req, res) {
 export async function eliminarPaisController(req, res) {
     try {
         const id = req.params.id;
-        const eliminado = await eliminarPaisS(id);
+        const paises = await eliminarPaisS(id);
 
-        if (!eliminado) {
+        if (!paises) {
             res.status(400).send({
                 mensaje: "No se pudo eliminar el pais (error 404)",
             });
         }
 
-        res.status(200).json({
-            mensaje: 'Pais eliminado: ',
-            datos: eliminado
-        });
+        res.redirect('/paises/todos');
 
     } catch (error) {
         res.status(500).send({
