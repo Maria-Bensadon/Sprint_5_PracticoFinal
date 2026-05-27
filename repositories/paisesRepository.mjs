@@ -9,6 +9,7 @@ export const paisesAmerica = async () => {
         return paises.data;
     } catch (error) {
         console.error('Error al consumir la API:', error);
+        throw error; 
     }
 
 };
@@ -21,7 +22,8 @@ class paisesRepository extends IRepository {
             // los datos se obtienen de la base de datos
             return await paisesModelo.find({ creador: "Gaby Bensadon" });
         } catch (error) {
-            console.log('Error Mongo: ', error.message);
+            console.error('Error al obtener los paises (repo): ', error.message);
+            throw error;
         }
     }
 
@@ -36,6 +38,7 @@ class paisesRepository extends IRepository {
             return datosRepo;
         } catch (error) {
             console.error('Detalle de errores importarEnMongoR (repositorio):', error.message);
+            throw error;
         }
     }
 
@@ -50,6 +53,7 @@ class paisesRepository extends IRepository {
 
         } catch (error) {
             console.error('Detalle de errores eliminarEnMongoR (repositorio):', error.message);
+            throw error;
         }
     }
 
@@ -61,6 +65,7 @@ class paisesRepository extends IRepository {
             return paisNew;
         } catch (error) {
             console.error('Detalle de errores agregarPaisR (repo):', error.message);
+            throw error;
         }
     }
 
@@ -73,6 +78,7 @@ class paisesRepository extends IRepository {
 
         } catch (error) {
             console.error('Detalle de errores encontrarPaisR (repo):', error.message);
+            throw error;
         }
     }
 
@@ -85,6 +91,7 @@ class paisesRepository extends IRepository {
         }
         catch (error) {
             console.error('Detalle de errores actualizarPaisR (repo):', error.message);
+            throw error;
         }
     }
 
@@ -96,6 +103,7 @@ class paisesRepository extends IRepository {
             return paisEliminado;
         } catch (error) {
             console.error('Detalle de errores eliminarPais (repo):', error.message);
+            throw error;
         }
     }
 

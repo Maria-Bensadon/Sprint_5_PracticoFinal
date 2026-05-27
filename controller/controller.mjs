@@ -1,6 +1,6 @@
 
 import {
-    filtrarPaisesEspañol, importarEnMongoS,
+    importarEnMongoS,
     eliminarEnMongoS, agregarPaisS, encontrarPaisS,
     actualizarPaisS, eliminarPaisS,
     obtenerPaisesS
@@ -67,8 +67,8 @@ export async function agregarPaisController(req, res) {
         const paises = await agregarPaisS(datos);
 
         if (!paises) {
-            return res.status(400).send({
-                mensaje: "No se pudo agregar un nuevo pais (error 400)",
+            return res.status(404).send({
+                mensaje: "No se pudo agregar un nuevo pais (error 404)",
             });
         }
 
@@ -92,7 +92,7 @@ export async function encontrarPaisController(req, res) {
 
         if (!pais) {
             return res.status(404).send({
-                mensaje: "No se pudo encontrar el pais (error 400)",
+                mensaje: "No se pudo encontrar el pais (error 404)",
             });
         }
 
@@ -117,8 +117,8 @@ export async function actualizarPaisController(req, res) {
         const paises = await actualizarPaisS(id, datosActualizados);
 
         if (!paises) {
-            return res.status(400).send({
-                mensaje: "No se pudo agregar un nuevo pais (error 400)",
+            return res.status(404).send({
+                mensaje: "No se pudo agregar un nuevo pais (error 404)",
             });
         }
 
@@ -140,7 +140,7 @@ export async function eliminarPaisController(req, res) {
         const paises = await eliminarPaisS(id);
 
         if (!paises) {
-            res.status(400).send({
+            res.status(404).send({
                 mensaje: "No se pudo eliminar el pais (error 404)",
             });
         }

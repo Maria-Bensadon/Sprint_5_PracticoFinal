@@ -20,7 +20,7 @@ export const validarPais = () => [
     body('capital.*')
         .notEmpty().withMessage('Ingrese la capital del pais')
         .trim()
-        .isLength({ min: 3, max: 60 }).withMessage('El nombre oficial debe tener entre 3 y 90 caracteres'),
+        .isLength({ min: 3, max: 90 }).withMessage('El nombre oficial debe tener entre 3 y 90 caracteres'),
 
     body('poblacion')
         .notEmpty().withMessage('Debe indicar la cantidad de poblacion')
