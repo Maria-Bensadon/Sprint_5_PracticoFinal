@@ -38,10 +38,13 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+    padding-top: 15px;
 }
 
 .navbar ul li a img {
     width: 20px;
+    padding-top: 5px;
+    margin-left: 30px;
 }
 
 footer {
@@ -78,9 +81,10 @@ table {
 tr,
 th,
 td {
-    padding: 15px 25px;
+    padding: 10px 15px;
     border: 1px solid rgba(180, 180, 180, 0.729);
     white-space: nowrap;
+    font-size: small;
 }
 
 th {
@@ -97,9 +101,34 @@ th {
     cursor: pointer;
 }
 
+.div {
+    position: relative;
+    margin-left: 600px;
+}
+
+.btn1 {
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    padding: 2px;
+    z-index: 2;
+}
+
+.btn2 {
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    padding: 2px;
+    z-index: 1;
+}
+
 .palabras {
     color: rgb(217, 216, 216);
     text-decoration: none;
+}
+
+.btnPal {
+    font-size: x-small;
 }
 
 * {
@@ -154,10 +183,10 @@ th {
 }
 
 .section {
-    margin-top: 30px; 
-    margin-left: 5x; 
-    margin-right: 5x; 
-    padding:80px; 
+    margin-top: 30px;
+    margin-left: 5x;
+    margin-right: 5x;
+    padding: 80px;
     background-color: rgba(18, 17, 17, 0.281);
     color: rgb(247, 247, 247);
     font-family: 'Courier New', Courier, monospace;

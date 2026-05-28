@@ -8,38 +8,42 @@
         <ul>
             <li>
                 <a href="/">
-                    <img src="/icons/inicio.svg" alt="Inicio Icon">
+                    <img src="/icons/inicio.svg" alt="Inicio Icon" width="40">
                     Inicio
                 </a>
             </li>
 
             <li>
                 <a href="/paises/todos">
-                    <img src="/icons/inicio2.svg" alt="verTodosLosPaises.svg">
+                    <img src="/icons/inicio2.svg" alt="verTodosLosPaises.svg" width="40">
                     Paises
                 </a>
             </li>
 
             <li>
                 <a href="/paises/agregarPais">
-                    <img src="/icons/agregarPais.svg" alt="agregarPais.svg">
+                    <img src="/icons/agregarPais.svg" alt="agregarPais.svg" width="40">
                     Agregar Pais
                 </a>
             </li>
 
-            <li>
-                <a href="/paises/guardarTodos">
-                    <img src="/icons/guardarTodos1.svg" alt="guardarTodos.svg">
-                    Guardar Paises
-                </a>
-            </li>
+            <div class="div">
+                <li>
+                    <form action="/paises/guardarTodos" method="POST">
+                        <button class="btn1 btnPal">
+                            <img src="/icons/guardarTodos1.svg" alt="guardarTodos.svg" width="20"> Guardar Paises
+                        </button>
+                    </form>
+                </li>
 
-            <li>
-                <a href="/paises/borrarTodos">
-                    <img src="/icons/eliminar.svg" alt="eliminarTodos.svg">
-                    Eliminar Paises
-                </a>
-            </li>
+                <li>
+                    <form action="/paises/borrarTodos?_method=DELETE" method="POST">
+                        <button class="btn2 btnPal">
+                            <img src="/icons/eliminar.svg" alt="eliminarTodos.svg" width="20"> Eliminar Paises
+                        </button>
+                    </form>
+                </li>
+            </div>
         </ul>
     </div>
 </nav>

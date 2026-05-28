@@ -21,18 +21,18 @@ const handleValidationErrors = (req, res, next) => {
 
 export { handleValidationErrors }; 
 
-export const handleValidationErrorsAgregarPais = (req, res, next) => {
+// export const handleValidationErrorsAgregarPais = (req, res, next) => {
 
-    const errores = validationResult(req);
+//     const errores = validationResult(req);
 
-    if (!errores.isEmpty()) {
-        return res.render('addPais', {
-            errors: errores.array().map(error =>
-            ({
-                field: error.path,
-                message: error.msg,
-            }))
-        });
-    }
-    next();
-}
+//     if (!errores.isEmpty()) {
+//         return res.render('addPais', {
+//             errors: errores.array().map(error =>
+//             ({
+//                 field: error.path,
+//                 message: error.msg,
+//             }))
+//         });
+//     }
+//     next();
+// }; 
