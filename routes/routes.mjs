@@ -14,9 +14,6 @@ import { handleValidationErrors } from '../validationResults/handleValidationErr
 const router = express.Router();
 
 
-router.post('/guardarTodos', guardarDatosController);
-router.delete('/borrarTodos', borrarDatosController);
-
 // http://localhost:3000/todos
 router.get('/todos', obtenerPaisesEspañolController);
 
@@ -24,12 +21,16 @@ router.get('/todos', obtenerPaisesEspañolController);
 router.get('/agregarPais', (req, res) => {
     res.render('addPais', { title: 'Agregar Pais' });
 });
-router.post('/agregarPais', convertirEnArray, validarPais(), handleValidationErrors, agregarPaisController);
 
 // http://localhost:3000/editar/:id
 router.get('/editar/:id', encontrarPaisController);
+
+router.post('/guardarTodos', guardarDatosController);
+router.post('/agregarPais', convertirEnArray, validarPais(), handleValidationErrors, agregarPaisController);
+
 router.put('/editar/:id', convertirEnArray, validarPais(), handleValidationErrors, actualizarPaisController);
 
+router.delete('/borrarTodos', borrarDatosController);
 router.delete('/eliminar/:id', eliminarPaisController);
 
 
